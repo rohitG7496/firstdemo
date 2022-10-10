@@ -1,0 +1,20 @@
+---
+  - name: install jenkins to localhost
+    hosts: web
+    become: yes
+    tasks:
+
+    - name: add URL
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: add repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: install docker 
+      apt: 
+        name: docker-ce
+        state: present
